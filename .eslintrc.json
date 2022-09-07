@@ -1,3 +1,13 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "arrow-body-style": ["error", "always"],
+    "eqeqeq": ["error", "smart"],
+    "arrow-spacing": "error",
+    "brace-style": "error",
+    "prettier.singleQuote": true,
+    "prettier.eslintIntegration": true,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true
+  }
 }
