@@ -18,13 +18,9 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
     }
   }, [file, setFile]);
 
-  const isAlphaNumeric = (str: string) => {
-    str = str.replace(/(\r\n|\n|\r)/gm, "");
-    return /^[a-z0-9]+$/gi.test(str);
-  };
   const submit = useCallback((e) => {
     console.log(messageValue);
-    if (e.keyCode == 13 && !e.shiftKey && isAlphaNumeric(messageValue)) {
+    if (e.keyCode == 13 && !e.shiftKey) {
       sendMessage(messageValue);
       setMessageValue("");
     }
@@ -40,7 +36,8 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         required
         autosize
         maxLength={2000}
-        maxRows={3}
+        maxRows={2}
+        minRows={2}
         ref={textAreaEnter}
         value={messageValue}
         onSubmit={() => sendMessage(messageValue)}
@@ -51,7 +48,7 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
           }
           setMessageValue(event.currentTarget.value);
         }}
-        style={{ alignSelf: "flex-end", width: "90%", flex: 9 }}
+        style={{ alignSelf: "flex-end", width: "90%", height: "100%", flex: 9 }}
       />
       <Stack justify="flex-end" spacing="xs" style={{ marginLeft: "10px" }}>
         <FileButton
@@ -68,10 +65,8 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
           radius="md"
           leftIcon={<IconArrowUp size={14} />}
           onClick={() => {
-            if (isAlphaNumeric(messageValue)) {
               sendMessage(messageValue);
               setMessageValue("");
-            }
           }}
         />
       </Stack>
