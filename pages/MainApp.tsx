@@ -4,6 +4,7 @@ import CustomNavbar from "../components/navbar";
 import CustomHeader from "../components/header";
 import CustomAside from "../components/aside";
 import CustomDrawer from "../components/drawer";
+import LoginPage from '../components/login';
 import RoomSkeleton from "../components/roomSkeleton";
 import useRooms from "../hooks/useRooms";
 import { userContext } from "../hooks/userContext";
@@ -12,6 +13,7 @@ import ConnectToRoom from "../api/room/connectToRoom";
 import loadUser from "../api/user/loadUser";
 import { User } from '../types/user';
 import { Room } from '../types/room'
+
 
 const MainApp = () => {
   const theme = useMantineTheme();
@@ -64,6 +66,7 @@ const MainApp = () => {
     <userContext.Provider value={{
                             user, setUser
                           }}>
+      {user || loading ? 
       <AppShell
         styles={{
           main: {
@@ -123,6 +126,9 @@ const MainApp = () => {
           <RoomSkeleton />
         )}
       </AppShell>
+      :
+      <LoginPage setUser={setUser} />
+      }
     </userContext.Provider>
   );
 };

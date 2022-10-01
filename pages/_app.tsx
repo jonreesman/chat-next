@@ -16,6 +16,7 @@ export default function App(props) {
 
       <MantineProvider
         withGlobalStyles
+        withCSSVariables
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */

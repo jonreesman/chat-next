@@ -177,7 +177,9 @@ const UserMenu = () => {
         <Menu.Item
           icon={<IconLogout size={14} />}
           onClick={() => {
-            return Logout(setUser);
+            Logout(setUser).then(() => {
+              console.log("Logging out")
+            })
           }}
         >
           Logout
