@@ -36,13 +36,14 @@ const UserMenu = () => {
   const updateName = async () => {
     UpdateDisplayName(user.ID, newName).then((response) => {
       let newUser = response;
+      console.log(response)
       if (newUser === null) {
         return
       }
+      newUser.AvatarURL = user.AvatarURL
       setUser(newUser);
       setNewName("");
       setNameChangeOpened(false);
-      window.location.reload();
     });
   };
 
@@ -132,9 +133,9 @@ const UserMenu = () => {
               onClick={async () => {
                 UpdateDisplayName(user.ID, newName).then((response) => {
                   let newUser = response;
+                  newUser.AvatarURL = user.AvatarURL
                   setUser(newUser);
                   setNameChangeOpened(false);
-                  window.location.reload();
                 });
               }}
             >
