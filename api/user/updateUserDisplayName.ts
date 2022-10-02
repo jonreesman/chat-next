@@ -6,8 +6,10 @@ const updateUserDisplayName = (id: string, name: string): Promise<User> => {
         DisplayName: name,
     }, { params: { "id": id}})
     .then(response => {
-        const { data } = response;
+        const { data } = response.data;
+        console.log(data)
         if (response === null) {
+            console.log("Update name response was null.")
             return;
         }
         const user: User = {
@@ -16,6 +18,7 @@ const updateUserDisplayName = (id: string, name: string): Promise<User> => {
             ID: data.ID,
             Username: data.Username,
         }
+        console.log(user)
         return user;
     })
     .catch(err => {
