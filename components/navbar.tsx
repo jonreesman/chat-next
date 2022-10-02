@@ -24,6 +24,7 @@ type Props = {
   rooms: Room[] | null,
   fetched: boolean,
   loading: boolean,
+  setReload: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const CustomNavbar: React.FC<Props> = ({
@@ -33,6 +34,7 @@ const CustomNavbar: React.FC<Props> = ({
   rooms,
   fetched,
   loading,
+  setReload,
 }) => {
   const [addRoomMenuOpened, setAddRoomMenuOpened] = useState<boolean>(false);
   const [newRoomName, setNewRoomName] = useState<string>("");
@@ -119,9 +121,12 @@ const CustomNavbar: React.FC<Props> = ({
         <Button
           style={{ alignSelf: "flex-end", float: "right", marginTop: "5px" }}
           onClick={() => {
-            AddRoom(newRoomName);
+            AddRoom(newRoomName)
+            .then((resp) => {
+              console.log(resp)
+              setReload(true)
+            })
             setAddRoomMenuOpened(false);
-            window.location.reload();
           }}
         >
           Add Room
@@ -166,8 +171,10 @@ const CustomNavbar: React.FC<Props> = ({
                     <Menu.Item
                       icon={<IconTrash size={14} />}
                       onClick={() => {
-                        DeleteRoom(value);
-                        window.location.reload();
+                        DeleteRoom(value)
+                        .then(()=> {
+                          setReload(true)
+                        })
                       }}
                     >
                       Delete Room
