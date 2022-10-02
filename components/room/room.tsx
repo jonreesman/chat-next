@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Stack } from "@mantine/core";
 import createWebSocket from "../../api/createWebSocket";
 import { userContext } from "../../hooks/userContext";
@@ -22,6 +22,9 @@ type Websocket = {
 const Room: React.FC<Props> = ({ room, roomToken }) => {
   const {user} = useContext(userContext);
   const [sendMessage, lastMessage, ] = createWebSocket(room, user, roomToken);
+  useEffect(() => {
+    console.log("re-render for WebSocket...")
+  }, [room, user, roomToken])
 
   return (
     <Stack justify="flex-end" style={{ height: "100%", width: "100%" }}>
