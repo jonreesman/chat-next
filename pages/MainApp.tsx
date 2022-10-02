@@ -21,10 +21,20 @@ const MainApp = () => {
   const [user, setUser] = useState<User | null>(null);
   const [room, setRoom] = useState<Room | null>(null);
   const [roomToken, setRoomToken] = useState("");
-  const [rooms, loading, fetched] = useRooms();
+  const [rooms, loading, fetched, getRooms] = useRooms();
+  const [reload, setReload] = useState<boolean>(false)
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [navOpened, setNavOpened] = useState(false);
   const [asideOpened, setAsideOpened] = useState(false);
+
+  useEffect(() => {
+    getRooms();
+    setReload(false)
+  },[reload])
+
+  useEffect(() => {
+    console.log("separate user changes from other changes...")
+  }, [user, setUser])
 
   useEffect(() => {
     loadUser()
@@ -39,6 +49,7 @@ const MainApp = () => {
   }, []);
 
   useEffect(() => {
+    console.log("Better reload")
     if (rooms === undefined) {
       console.log("rooms undefined ", rooms)
       return
@@ -87,6 +98,7 @@ const MainApp = () => {
               room={room}
               fetched={fetched}
               loading={loading}
+              setReload={setReload}
             />
           ) : (
             <>
@@ -97,6 +109,7 @@ const MainApp = () => {
                 room={null}
                 setRoom={null}
                 rooms={null}
+                setReload={null}
               />
             </>
           )
