@@ -16,7 +16,6 @@ const updateUserDisplayName = (id: string, name: string): Promise<User> => {
             ID: data.ID,
             Username: data.Username,
         }
-        console.log(response)
         return user;
     })
     .catch(err => {

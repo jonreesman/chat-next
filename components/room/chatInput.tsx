@@ -19,7 +19,6 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
   }, [file, setFile]);
 
   const submit = useCallback((e) => {
-    console.log(messageValue);
     if (e.keyCode == 13 && !e.shiftKey) {
       sendMessage(messageValue);
       setMessageValue("");
@@ -42,7 +41,6 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         value={messageValue}
         onSubmit={() => sendMessage(messageValue)}
         onChange={(event) => {
-          console.log(event.currentTarget.value);
           if (event.currentTarget.value == "\n") {
             return;
           }

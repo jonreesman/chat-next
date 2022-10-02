@@ -53,7 +53,6 @@ const CustomNavbar: React.FC<Props> = ({
 
   useEffect(() => {
     if (fetched) {
-      console.log(rooms[0])
       setRoom(rooms[0]);
     }
   }, [rooms, fetched]);

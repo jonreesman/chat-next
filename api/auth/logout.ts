@@ -6,7 +6,6 @@ import { User } from '../../types/user';
 export default async function Logout(setUser: React.Dispatch<React.SetStateAction<User>>) {
     return peakchat.get(`/api/auth/logout`, {})
     .then(response => {
-        console.log(response)
         const cookies = new Cookies();
         setUser(null);
         setAuthToken(null);

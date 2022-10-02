@@ -4,10 +4,8 @@ import { User } from '../../types/user';
 export default async function FileUpload(file, id): Promise<User>{
     const formData = new FormData();
     formData.append("image", file, file.name)
-    console.log(formData.get("image"))
     return peakchat.post(`/uploads/avatar`, formData, {headers: {'Content-Type': 'multipart/form-data'}, params: {'id': id}, withCredentials: true})
     .then(response => {
-        console.log(response)
         const {data} = response;
         const user: User = {
             AvatarURL: data.data.AvatarURL,

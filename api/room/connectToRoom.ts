@@ -3,8 +3,6 @@ import { Room } from '../../types/room';
 import { User } from '../../types/user';
 
 export default async function ConnectToRoom(room: Room, user: User) {
-    console.log("room: ", room.ID)
-    console.log("user: ", user.ID)
     try {
         const response = await peakchat.get(`/api/rooms/room/`, {
             params: {

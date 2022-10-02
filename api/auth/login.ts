@@ -7,7 +7,6 @@ export default async function login(username: string, password: string) {
                 Password: password,
             })
             .then(response => {
-                console.log(response)
                 setAuthToken(response.data.token)
                 saveToken(response.data.token)
                 return response;

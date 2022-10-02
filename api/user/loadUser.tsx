@@ -5,7 +5,6 @@ import {User} from '../../types/user'
 export default async function loadUser(): Promise<User> {
     return peakchat.get(`/api/client/`)
     .then(response => {
-        console.log(response)
         const terseResponse = response.data.data
         const user: User = {
             Username: terseResponse.Username,
