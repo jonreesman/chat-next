@@ -3,7 +3,7 @@ import peakchat from "../api/api";
 import { Room } from "../types/room";
 import { userContext } from "./userContext";
 
-export default (): [Room[], boolean, boolean] => {
+export default (): [Room[], boolean, boolean, () => void] => {
   const user = useContext(userContext);
   const [rooms, setRooms] = useState<Room[]>();
   const [fetched, setFetched] = useState<boolean>(false);
@@ -26,5 +26,5 @@ export default (): [Room[], boolean, boolean] => {
   },[])
 
 
-  return [rooms, loading, fetched];
+  return [rooms, loading, fetched, getRooms];
 };
