@@ -16,6 +16,7 @@ import { useInViewport } from "react-in-viewport";
 import RoomSkeleton from "../roomSkeleton";
 import { User } from '../../types/user';
 import { Room } from '../../types/room';
+import peakchat from '../../api/api';
 
 type Props = {
   lastMessage: MessageEvent<any>,
@@ -39,7 +40,6 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
   useEffect(() => {
     if (lastMessage != null) {
       let jsonMessage = JSON.parse(lastMessage.data);
-      console.log(jsonMessage);
       setRoomHistory((prev) => {
         return prev.concat(jsonMessage);
       });
@@ -83,7 +83,7 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
               >
                 <Avatar
                   src={
-                    process.env.NEXT_PUBLIC_SITE_URL +
+                    peakchat.getUri() +
                     "/avatars/" +
                     user.AvatarURL
                   }

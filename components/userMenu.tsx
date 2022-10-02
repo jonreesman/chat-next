@@ -20,6 +20,7 @@ import {
   IconUser,
 } from "@tabler/icons";
 import FileUpload from "../api/user/fileUpload";
+import peakchat from "../api/api";
 import Logout from "../api/auth/logout";
 import UpdateDisplayName from "../api/user/updateUserDisplayName";
 
@@ -65,9 +66,7 @@ const UserMenu = () => {
     }
   }, [file, setFile]);
 
-  console.log(user);
-  console.log(file);
-  console.log(process.env.NEXT_PUBLIC_SITE_URL + "/avatars/" + user.AvatarURL);
+  console.log(peakchat.getUri() + "/avatars/" + user.AvatarURL);
   return (
     <Menu shadow="md" width={200} trigger="hover">
       <Modal
@@ -82,7 +81,7 @@ const UserMenu = () => {
             src={
               image
                 ? image
-                : process.env.NEXT_PUBLIC_SITE_URL +
+                : peakchat +
                   "/avatars/" +
                   user.AvatarURL
             }
@@ -102,7 +101,6 @@ const UserMenu = () => {
               onClick={async () => {
                 const response = FileUpload(file, user.ID);
                 await response.then((res) => {
-                  console.log(res);
                   let newUser = res;
                   setUser(newUser);
                   setAvatarChangeOpened(false);
@@ -134,7 +132,6 @@ const UserMenu = () => {
               onClick={async () => {
                 UpdateDisplayName(user.ID, newName).then((response) => {
                   let newUser = response;
-                  console.log(newUser);
                   setUser(newUser);
                   setNameChangeOpened(false);
                   window.location.reload();
@@ -152,7 +149,7 @@ const UserMenu = () => {
           <Text>{user.DisplayName}</Text>
           <Avatar
             src={
-              process.env.NEXT_PUBLIC_SITE_URL + "/avatars/" + user.AvatarURL
+              peakchat.getUri() + "/avatars/" + user.AvatarURL
             }
           />
         </Group>
