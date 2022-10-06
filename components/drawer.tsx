@@ -12,8 +12,8 @@ type Props = {
 };
 
 const CustomDrawer: React.FC<Props> = ({ onClose, drawerOpened, setDrawerOpened, setUser }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("Guest");
+  const [password, setPassword] = useState("Password");
 
   const attemptLogin = async () => {
     await tryLogin(username, password)
