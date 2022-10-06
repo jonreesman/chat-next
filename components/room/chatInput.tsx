@@ -49,16 +49,6 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         style={{ alignSelf: "flex-end", width: "90%", height: "100%", flex: 9 }}
       />
       <Stack justify="flex-end" spacing="xs" style={{ marginLeft: "10px" }}>
-        <FileButton
-          onChange={setFile}
-          accept="image/png,image/jpeg"
-        >
-          {(props) => (
-            <Button {...props}>
-              <IconUpload size={14} />
-            </Button>
-          )}
-        </FileButton>
         <Button
           radius="md"
           leftIcon={<IconArrowUp size={14} />}
