@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput, PasswordInput, Button, Space, Container, Center } from '@mantine/core';
+import { TextInput, PasswordInput, Button, Space, Container} from '@mantine/core';
 import tryLogin from "../api/auth/login";
 import { AxiosResponse } from "axios";
 import { User } from '../types/user';
