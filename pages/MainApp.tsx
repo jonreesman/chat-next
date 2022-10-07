@@ -76,7 +76,7 @@ const MainApp = () => {
     <userContext.Provider value={{
                             user, setUser
                           }}>
-      {user || loading ? 
+      {user || (user && loading)? 
       <AppShell
         styles={{
           main: {
