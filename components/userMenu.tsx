@@ -82,7 +82,7 @@ const UserMenu = () => {
             src={
               image
                 ? image
-                : peakchat +
+                : peakchat.getUri() +
                   "/avatars/" +
                   user.AvatarURL
             }
@@ -122,6 +122,7 @@ const UserMenu = () => {
       >
         <Group position="apart">
           <Stack>
+            <Text>Enter a new username:</Text>
             <TextInput
               ref={textAreaEnter}
               value={newName}
@@ -147,7 +148,7 @@ const UserMenu = () => {
 
       <Menu.Target>
         <Group>
-          <Text>{user.DisplayName}</Text>
+          <Text>{user.DisplayName ? user.DisplayName : user.Username }</Text>
           <Avatar
             src={
               peakchat.getUri() + "/avatars/" + user.AvatarURL
