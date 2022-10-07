@@ -86,7 +86,7 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
                   src={
                     peakchat.getUri() +
                     "/avatars/" +
-                    user.AvatarURL
+                    message.User.AvatarURL
                   }
                   size="md"
                   style={{ float: "left", marginRight: "10px" }}
