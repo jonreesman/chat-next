@@ -1,10 +1,13 @@
 import React from "react";
 import { Skeleton } from "@mantine/core";
+import { useViewportSize } from '@mantine/hooks';
+
 
 const RoomSkeleton = () => {
+  const { height } = useViewportSize();
   return (
     <>
-      {[...Array(10)].map((_x, i) => {
+      {[...Array(Math.floor(height / 60))].map((_x, i) => {
         return (
           <Skeleton
             width="100%"
