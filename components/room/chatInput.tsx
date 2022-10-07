@@ -1,6 +1,6 @@
 import { IconArrowUp, IconUpload } from "@tabler/icons";
 import React, { useState, useEffect, useCallback } from "react";
-import { Textarea, Stack, Button, Container, FileButton } from "@mantine/core";
+import { Textarea, Stack, Button, Container, FileButton, Group } from "@mantine/core";
 import { useEventListener } from "@mantine/hooks";
 import { SendMessage } from "react-use-websocket"
 
@@ -27,7 +27,9 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
   const textAreaEnter = useEventListener("keydown", submit);
 
   return (
-    <Container style={{ width: "100%", display: "flex", flex: 1 }}>
+    <Container style={{ width: "100%", height: "10vh" }}>
+      <Group>
+
       <Textarea
         placeholder="Your comment"
         radius="lg"
@@ -35,7 +37,7 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         required
         autosize
         maxLength={2000}
-        maxRows={2}
+        maxRows={4}
         minRows={2}
         ref={textAreaEnter}
         value={messageValue}
@@ -46,8 +48,8 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
           }
           setMessageValue(event.currentTarget.value);
         }}
-        style={{ alignSelf: "flex-end", width: "90%", height: "100%", flex: 9 }}
-      />
+        style={{ width: "90%", height: "100%", flex: 9, marginTop: "auto", marginBottom: "auto" }}
+        />
         <Button
           radius="xl"
           leftIcon={<IconArrowUp size={14} />}
@@ -57,10 +59,11 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
             marginBottom: "auto",
           }}
           onClick={() => {
-              sendMessage(messageValue);
-              setMessageValue("");
+            sendMessage(messageValue);
+            setMessageValue("");
           }}
-        />
+          />
+          </Group>
     </Container>
   );
 };
