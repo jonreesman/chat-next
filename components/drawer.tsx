@@ -37,7 +37,7 @@ const CustomDrawer: React.FC<Props> = ({ onClose, drawerOpened, setDrawerOpened,
     <Drawer
       opened={drawerOpened}
       onClose={onClose}
-      title="Register"
+      title="Login"
       padding="xl"
       size="xl"
     >
