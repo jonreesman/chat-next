@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { IconArrowDown } from "@tabler/icons";
 import {
   ScrollArea,
+  Divider,
   Card,
   Text,
   Stack,
@@ -100,7 +101,7 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
             </Card>
           );
         })}
-        <div ref={bottomRef} />
+        <Divider my="xs" ref={bottomRef} />
       </ScrollArea.Autosize>
       <Affix position={{ bottom: 115, right: 80 }}>
         <Transition transition="slide-down" mounted={!isAtBottom.inViewport}>
