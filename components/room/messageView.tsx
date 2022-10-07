@@ -58,9 +58,9 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
   };
 
   return roomHistory ? (
-    <Container style={{ display: "flex", position: "relative", width: "100%" }}>
+    <Container style={{ display: "flex", position: "relative", width: "100%", height: "70vh" }}>
       <ScrollArea.Autosize
-        style={{ flex: 10, height: "75vh" }}
+        style={{ flex: 10, height: "70vh" }}
         maxHeight={height - 200}
         viewportRef={viewport}
         onScrollPositionChange={onScrollPositionChange}
