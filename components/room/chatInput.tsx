@@ -48,16 +48,19 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         }}
         style={{ alignSelf: "flex-end", width: "90%", height: "100%", flex: 9 }}
       />
-      <Stack justify="flex-end" spacing="xs" style={{ marginLeft: "10px" }}>
         <Button
-          radius="md"
+          radius="xl"
           leftIcon={<IconArrowUp size={14} />}
+          style={{
+            marginLeft: "10px",
+            marginTop: "auto",
+            marginBottom: "auto",
+          }}
           onClick={() => {
               sendMessage(messageValue);
               setMessageValue("");
           }}
         />
-      </Stack>
     </Container>
   );
 };
