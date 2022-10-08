@@ -60,7 +60,6 @@ const MainApp = () => {
   }, [rooms]);
 
   useEffect(() => {
-    console.log("test");
     if (user != undefined) {
       ConnectToRoom(room, user)
         .then((token) => {

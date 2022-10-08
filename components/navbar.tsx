@@ -119,7 +119,6 @@ const CustomNavbar: React.FC<Props> = ({
           onClick={() => {
             AddRoom(newRoomName)
             .then((resp) => {
-              console.log(resp)
               setReload(true)
             })
             setAddRoomMenuOpened(false);
