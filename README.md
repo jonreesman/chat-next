@@ -2,6 +2,8 @@
 
 This application is the associated frontend that goes with [chat-app](https://github.com/jonreesman/chat). It is developed using Next.js with Typescript for strict typing and [mantine](https://mantine.dev/) to simplify components I needed to create. The use of Typescript was a secondary thought, being implemented after much of the work was done. Thus, I may go back and re-work the entire structure.
 
+[Live Demo](https://chat.jonreesman.dev)
+
 ## Getting Started
 
 1. Make sure the associated [backend](https://github.com/jonreesman/chat) is running.
