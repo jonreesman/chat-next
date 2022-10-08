@@ -103,7 +103,7 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
         })}
         <Divider my="xs" ref={bottomRef} />
       </ScrollArea.Autosize>
-      <Affix position={{ bottom: 115, right: 80 }}>
+      <Affix position={{ bottom: "20vh", right: 90 }}>
         <Transition transition="slide-down" mounted={!isAtBottom.inViewport}>
           {(transitionStyles) => {
             return (
