@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { TextInput, PasswordInput, Button, Space, Container, Center } from '@mantine/core';
+import { useMantineTheme } from "@mantine/core";
+import { TextInput, PasswordInput, Button, Space, Container} from '@mantine/core';
 import tryLogin from "../api/auth/login";
 import { AxiosResponse } from "axios";
 import { User } from '../types/user';
@@ -10,9 +11,9 @@ type Props = {
   };
 
 const LoginPage: React.FC<Props> = ({ setUser })  => {
-  
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const theme = useMantineTheme();
+    const [username, setUsername] = useState("Guest");
+    const [password, setPassword] = useState("Password");
 
     const attemptLogin = async () => {
     await tryLogin(username, password)
@@ -56,7 +57,11 @@ const LoginPage: React.FC<Props> = ({ setUser })  => {
         required
         />
       <Space h="lg" />
-      <Button style={{ float: "right" }} onClick={attemptLogin}>
+      <Button 
+        color={theme.colorScheme === "dark" 
+        ? "gray"
+        : "blue"}
+        style={{ float: "right" }} onClick={attemptLogin}>
         Login
       </Button>
       <Space h={50} />

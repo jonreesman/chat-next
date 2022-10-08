@@ -30,3 +30,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+api/deprecated/setAuthToken.ts
+api/deprecated/saveToken.ts
+.gitignore
+api/useIntersection.js
+api/deprecated/loadToken.ts

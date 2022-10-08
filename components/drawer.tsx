@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMantineTheme } from "@mantine/core";
 import { Button, Drawer, PasswordInput, TextInput, Space } from "@mantine/core";
 import tryLogin from "../api/auth/login";
 import { Axios, AxiosResponse } from "axios";
@@ -12,8 +13,9 @@ type Props = {
 };
 
 const CustomDrawer: React.FC<Props> = ({ onClose, drawerOpened, setDrawerOpened, setUser }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const theme = useMantineTheme();
+  const [username, setUsername] = useState("Guest");
+  const [password, setPassword] = useState("Password");
 
   const attemptLogin = async () => {
     await tryLogin(username, password)
@@ -37,7 +39,7 @@ const CustomDrawer: React.FC<Props> = ({ onClose, drawerOpened, setDrawerOpened,
     <Drawer
       opened={drawerOpened}
       onClose={onClose}
-      title="Register"
+      title="Login"
       padding="xl"
       size="xl"
     >
@@ -63,7 +65,11 @@ const CustomDrawer: React.FC<Props> = ({ onClose, drawerOpened, setDrawerOpened,
         required
       />
       <Space h="lg" />
-      <Button style={{ float: "right" }} onClick={attemptLogin}>
+      <Button 
+        color={theme.colorScheme === "dark" 
+        ? "gray"
+        : "blue"}
+        style={{ float: "right" }} onClick={attemptLogin}>
         Login
       </Button>
     </Drawer>

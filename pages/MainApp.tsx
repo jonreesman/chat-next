@@ -33,7 +33,7 @@ const MainApp = () => {
   },[reload])
 
   useEffect(() => {
-    console.log("separate user changes from other changes...")
+    setReload(true);
   }, [user, setUser])
 
   useEffect(() => {
@@ -49,7 +49,6 @@ const MainApp = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Better reload")
     if (rooms === undefined) {
       console.log("rooms undefined ", rooms)
       return
@@ -77,7 +76,7 @@ const MainApp = () => {
     <userContext.Provider value={{
                             user, setUser
                           }}>
-      {user || loading ? 
+      {user || (user && loading)? 
       <AppShell
         styles={{
           main: {

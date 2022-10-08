@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useMantineTheme } from "@mantine/core";
 import { IconArrowDown } from "@tabler/icons";
 import {
   ScrollArea,
+  Divider,
   Card,
   Text,
   Stack,
@@ -26,6 +28,7 @@ type Props = {
 
 const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
   const [roomHistory, setRoomHistory] = useState([]);
+  const theme = useMantineTheme();
 
   const bottomRef = useRef(null);
   const [, onScrollPositionChange] = useState({ x: 0, y: 0 });
@@ -57,9 +60,9 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
   };
 
   return roomHistory ? (
-    <Container style={{ display: "flex", position: "relative", width: "100%" }}>
+    <Container style={{ display: "flex", position: "relative", width: "100%", height: "70vh" }}>
       <ScrollArea.Autosize
-        style={{ flex: 10, height: "75vh" }}
+        style={{ flex: 10, height: "70vh" }}
         maxHeight={height - 200}
         viewportRef={viewport}
         onScrollPositionChange={onScrollPositionChange}
@@ -85,13 +88,15 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
                   src={
                     peakchat.getUri() +
                     "/avatars/" +
-                    user.AvatarURL
+                    message.User.AvatarURL
                   }
                   size="md"
                   style={{ float: "left", marginRight: "10px" }}
                 />
                 <Stack>
-                  <Text size="sm" color="teal">
+                  <Text size="sm" color={(theme.colorScheme === "dark" 
+                  ? theme.colors.dark[0]
+                  : "teal")}>
                     {message ? message.User.DisplayName : null}
                   </Text>
                   <Text>{message.Content}</Text>
@@ -100,15 +105,18 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
             </Card>
           );
         })}
-        <div ref={bottomRef} />
+        <Divider my="xs" ref={bottomRef} />
       </ScrollArea.Autosize>
-      <Affix position={{ bottom: 115, right: 80 }}>
+      <Affix position={{ bottom: "20vh", right: 90 }}>
         <Transition transition="slide-down" mounted={!isAtBottom.inViewport}>
           {(transitionStyles) => {
             return (
               <Button
                 leftIcon={<IconArrowDown size={16} />}
                 style={transitionStyles}
+                color={theme.colorScheme === "dark" 
+                  ? "gray"
+                  : "blue"}
                 onClick={() => {
                   return scrollToBottom();
                 }}

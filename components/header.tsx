@@ -39,7 +39,11 @@ const CustomHeader: React.FC<Props> = ({ navOpened, setNavOpened, setDrawerOpene
         {user ? (
           <UserMenu />
         ) : (
-          <Button onClick={() => setDrawerOpened(true)}>Login</Button>
+          <Button 
+            color={theme.colorScheme === "dark" 
+            ? "gray"
+            : "blue"}
+            onClick={() => setDrawerOpened(true)}>Login</Button>
         )}
       </Group>
     </Header>

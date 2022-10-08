@@ -11,6 +11,8 @@ import {
   TextInput,
   Button,
 } from "@mantine/core";
+import { useMantineTheme } from "@mantine/core";
+import RoomSkeleton from "./roomSkeleton";
 import { useEventListener } from "@mantine/hooks";
 import { IconDots, IconPlus, IconTrash } from "@tabler/icons";
 import DeleteRoom from "../api/room/deleteRoom";
@@ -36,6 +38,7 @@ const CustomNavbar: React.FC<Props> = ({
   loading,
   setReload,
 }) => {
+  const theme = useMantineTheme();
   const [addRoomMenuOpened, setAddRoomMenuOpened] = useState<boolean>(false);
   const [newRoomName, setNewRoomName] = useState<string>("");
   const isAlphaNumeric = (str: string) => {
@@ -81,17 +84,7 @@ const CustomNavbar: React.FC<Props> = ({
         hidden={!navOpened}
         width={{ sm: 200, lg: 300 }}
       >
-        {[...Array(10)].map((__x, i) => {
-          return (
-            <Skeleton
-              width="100%"
-              key={i}
-              height={60}
-              radius="md"
-              style={{ marginTop: 5, whiteSpace: "pre-wrap" }}
-            />
-          );
-        })}
+        <RoomSkeleton />
       </Navbar>
     );
   }
@@ -120,6 +113,9 @@ const CustomNavbar: React.FC<Props> = ({
         />
         <Button
           style={{ alignSelf: "flex-end", float: "right", marginTop: "5px" }}
+          color={theme.colorScheme === "dark" 
+              ? "gray"
+              : "blue"}
           onClick={() => {
             AddRoom(newRoomName)
             .then((resp) => {
@@ -141,9 +137,11 @@ const CustomNavbar: React.FC<Props> = ({
       />
       <ScrollArea.Autosize maxHeight={"75vh"} style={{ flex: 10, height: "75vh" }}>
         {rooms.map((value) => {
-          let cardColor = "black";
+          let cardColor = "white";
           if (value.ID === room.ID) {
-            cardColor = "teal";
+            cardColor = (theme.colorScheme === "dark" 
+            ? theme.colors.dark[0]
+            : "teal")
           }
           return (
             <Card
