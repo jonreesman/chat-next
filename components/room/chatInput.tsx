@@ -27,7 +27,7 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
   const textAreaEnter = useEventListener("keydown", submit);
 
   return (
-    <Container style={{ width: "100%", height: "10vh" }}>
+    <Container style={{ width: "100%", height: "15vh" }}>
       <Group>
 
       <Textarea
@@ -37,7 +37,7 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         required
         autosize
         maxLength={2000}
-        maxRows={4}
+        maxRows={3}
         minRows={2}
         ref={textAreaEnter}
         value={messageValue}
