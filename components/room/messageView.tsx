@@ -95,8 +95,8 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
                 />
                 <Stack>
                   <Text size="sm" color={(theme.colorScheme === "dark" 
-            ? theme.colors.dark[0]
-            : "teal")}>
+                  ? theme.colors.dark[0]
+                  : "teal")}>
                     {message ? message.User.DisplayName : null}
                   </Text>
                   <Text>{message.Content}</Text>
