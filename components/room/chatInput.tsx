@@ -1,3 +1,4 @@
+import { useMantineTheme } from "@mantine/core";
 import { IconArrowUp, IconUpload } from "@tabler/icons";
 import React, { useState, useEffect, useCallback } from "react";
 import { Textarea, Stack, Button, Container, FileButton, Group } from "@mantine/core";
@@ -9,6 +10,7 @@ type Props = {
 }
 
 const ChatInput: React.FC<Props> = ({ sendMessage }) => {
+  const theme = useMantineTheme();
   const [messageValue, setMessageValue] = useState("");
   const [file, setFile] = useState(null);
 
@@ -50,19 +52,24 @@ const ChatInput: React.FC<Props> = ({ sendMessage }) => {
         }}
         style={{ width: "90%", height: "100%", flex: 9, marginTop: "auto", marginBottom: "auto" }}
         />
+        <Stack>
+
         <Button
           radius="xl"
           leftIcon={<IconArrowUp size={14} />}
+          color={theme.colorScheme === "dark" 
+              ? "gray"
+              : "blue"}
           style={{
             marginLeft: "10px",
             marginTop: "auto",
-            marginBottom: "auto",
           }}
           onClick={() => {
             sendMessage(messageValue);
             setMessageValue("");
           }}
           />
+          </Stack>
           </Group>
     </Container>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useMantineTheme } from "@mantine/core";
 import { IconArrowDown } from "@tabler/icons";
 import {
   ScrollArea,
@@ -27,6 +28,7 @@ type Props = {
 
 const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
   const [roomHistory, setRoomHistory] = useState([]);
+  const theme = useMantineTheme();
 
   const bottomRef = useRef(null);
   const [, onScrollPositionChange] = useState({ x: 0, y: 0 });
@@ -92,7 +94,9 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
                   style={{ float: "left", marginRight: "10px" }}
                 />
                 <Stack>
-                  <Text size="sm" color="teal">
+                  <Text size="sm" color={(theme.colorScheme === "dark" 
+            ? theme.colors.dark[0]
+            : "teal")}>
                     {message ? message.User.DisplayName : null}
                   </Text>
                   <Text>{message.Content}</Text>
@@ -110,6 +114,9 @@ const MessageView: React.FC<Props> = ({ room, lastMessage, user }) => {
               <Button
                 leftIcon={<IconArrowDown size={16} />}
                 style={transitionStyles}
+                color={theme.colorScheme === "dark" 
+                  ? "gray"
+                  : "blue"}
                 onClick={() => {
                   return scrollToBottom();
                 }}

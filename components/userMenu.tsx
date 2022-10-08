@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
+import { useMantineTheme } from "@mantine/core";
 import {
   Menu,
   Text,
@@ -25,6 +26,7 @@ import Logout from "../api/auth/logout";
 import UpdateDisplayName from "../api/user/updateUserDisplayName";
 
 const UserMenu = () => {
+  const theme = useMantineTheme();
   const {user, setUser} = useContext(userContext);
   const [avatarChangeOpened, setAvatarChangeOpened] = useState(false);
   const [nameChangeOpened, setNameChangeOpened] = useState(false);
@@ -89,16 +91,22 @@ const UserMenu = () => {
             size="xl"
           />
           <Stack>
-            <FileButton onChange={setFile} accept="image/png,image/jpeg">
+            <FileButton 
+            onChange={setFile} accept="image/png,image/jpeg">
               {(props) => {
                 return (
-                  <Button {...props}>
+                  <Button color={theme.colorScheme === "dark" 
+                  ? "gray"
+                  : "blue"} {...props}>
                     <IconUpload size={14} />
                   </Button>
                 );
               }}
             </FileButton>
             <Button
+              color={theme.colorScheme === "dark" 
+              ? "gray"
+              : "blue"}
               onClick={async () => {
                 const response = FileUpload(file, user.ID);
                 await response.then((res) => {
@@ -131,6 +139,9 @@ const UserMenu = () => {
               }}
             />
             <Button
+              color={theme.colorScheme === "dark" 
+              ? "gray"
+              : "blue"}
               onClick={async () => {
                 UpdateDisplayName(user.ID, newName).then((response) => {
                   let newUser = response;
